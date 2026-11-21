@@ -140,6 +140,28 @@ git commit -am "fix: umbral de ALARM en 0.25"
 git push
 ```
 
+**8. Publicar con GitHub Pages (CD)**
+
+El workflow tiene un segundo job, `publicar`, que corre solo si `pruebas` pasó y solo en `main`. Toma la página de `site/index.html`, le agrega el commit y la fecha, y la despliega en:
+
+https://manassesmauricio-cloud.github.io/demo-github-actions-urp-mcd-mlops-2602/
+
+Activar Pages una sola vez (desde la consola):
+
+```bash
+gh api -X POST repos/<usuario>/<repo>/pages -f build_type=workflow
+```
+
+Para cambiar lo publicado, edita `site/index.html` y sube:
+
+```bash
+git commit -am "docs: nuevo aviso en la página"
+git push
+gh run watch           # pruebas -> publicar
+```
+
+Si las pruebas fallan (paso 7), `publicar` no corre y queda en línea la última versión buena.
+
 ## Qué demuestra
 
 - Una regla de negocio (el umbral del semáforo) queda protegida por una prueba: si alguien la cambia sin querer, el CI lo avisa antes de que llegue a producción.

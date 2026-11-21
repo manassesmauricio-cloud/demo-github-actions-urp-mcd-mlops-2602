@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo GitHub Actions - URP MCD MLOps 2602</title>
+<style>
+  :root { --bg: #f6f7f9; --fg: #1d2330; --muted: #5b6475; --card: #ffffff; --line: #dde1e8; --ok: #1f7a4d; --accent: #2457c5; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #14171d; --fg: #e6e9ef; --muted: #9aa3b2; --card: #1c2028; --line: #2c323d; --ok: #4cc38a; --accent: #7aa2ff; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 16px 64px; display: flex; flex-direction: column; gap: 24px; }
+  h1 { margin: 0; font-size: 1.8rem; }
+  h2 { margin: 0 0 8px; font-size: 1.15rem; }
+  .lead { color: var(--muted); margin: 6px 0 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px; }
+  .estado { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; font-variant-numeric: tabular-nums; }
+  .estado dt { color: var(--muted); }
+  .estado dd { margin: 0; }
+  .ok { color: var(--ok); font-weight: 600; }
+  ol { margin: 0; padding-left: 1.2em; }
+  a { color: var(--accent); }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: .92em; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Demo de GitHub Actions</h1>
+    <p class="lead">Curso MCD-402 MLOps - Universidad Ricardo Palma, 2026-2</p>
+  </header>
+
+  <section class="card">
+    <h2>Estado de la última publicación</h2>
+    <dl class="estado">
+      <dt>Pruebas</dt><dd class="ok">{{RESULTADO}}</dd>
+      <dt>Commit</dt><dd><code>{{COMMIT}}</code> - {{MENSAJE}}</dd>
+      <dt>Publicado</dt><dd>{{FECHA}} (hora de Lima)</dd>
+      <dt>Run</dt><dd><a href="{{RUN_URL}}">ver en GitHub Actions</a></dd>
+    </dl>
+  </section>
+
+  <section class="card">
+    <h2>Cómo llega esta página aquí</h2>
+    <ol>
+      <li>Alguien hace <code>git push</code> a la rama <code>main</code>.</li>
+      <li>El job <code>pruebas</code> corre <code>pytest</code> en una máquina limpia (CI).</li>
+      <li>Si las pruebas pasan, el job <code>publicar</code> completa esta página con el commit y la fecha, y la despliega en GitHub Pages (CD).</li>
+      <li>Si alguna prueba falla, no se publica nada y queda en línea la última versión buena.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Avisos del curso</h2>
+    <p>Edita este bloque en <code>site/index.html</code>, haz push y se publica solo.</p>
+  </section>
+</main>
+</body>
+</html>
